@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- 
+    Richard McNew
+    CS 5400
+    Assignment 06:  Three Body
+
+    "Write a program that shows a simulation of a 3 body particle system (i.e. Sun-Earth-Moon).  
+    User interface should include ability to modify various system parameters such as mass, velocity, and position of the three particles.  
+    UI should also have controls for changing view parameters to allow the user to explore the system"
+
+    Due Dec 7 by 11:59pm
+-->
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Three Body System</title>
+		<style>
+			/* body { margin: 0; overflow: hidden; } */
+			body { margin: 1px; }
+		</style>
+	</head>
+	<body>
+		<script src="three.js"></script>
+        <script src="Tween.js"></script>
+		<script src="threeBody.js"></script>
+        <div id="instructions" style="border: thin solid black; padding: 3px;">
+            Use WASD to fly through space.&nbsp; &nbsp; Use Arrow keys to turn.<br/>
+            Jump To: B (Sun), N (Earth), M (Moon), V (Overhead) &nbsp; &nbsp; Look At: J (Sun), K (Earth), L (Moon) <br/>
+            Warp Factor changes flying speed.  Toggle Astro Movement starts / stops motion. Tiny parameters alter parameters to place all three bodies on the screen.<br/>
+            <label for="warpFactor">Warp Factor</label>
+            <input id="warpFactor" type="number" value="1"/>
+        </div>
+        <div id="astroParameters" style="border: thin solid black; padding: 3px;">
+            <div id="sunParameters">
+                Sun: &nbsp;&nbsp; 
+                <label for="sunMass">Mass (kg):</label>
+                <input id="sunMass" type="number" value="1.989e30"/>
+                <label for="sunRadius">Radius (m):</label>
+                <input id="sunRadius" type="number" value="6.957e8"/>
+            </div>
+            <div id="earthParameters">
+                Earth: &nbsp;&nbsp; 
+                <label for="earthMass">Mass (kg):</label>
+                <input id="earthMass" type="number" value="5.972e24"/>
+                <label for="earthRadius">Radius (m):</label>
+                <input id="earthRadius" type="number" value="6.371e6"/>
+                <label for="earthDistanceFromSun">Distance From Sun (m):</label>
+                <input id="earthDistanceFromSun" type="number" value="1.496e11"/>
+                <label for="earthVelocity">Velocity (m/s):</label>
+                <input id="earthVelocity" type="number" value="3.0e5"/>
+            </div>
+            <div id="moonParameters">
+                Moon: &nbsp;&nbsp;
+                <label for="moonMass">Mass (kg):</label>
+                <input id="moonMass" type="number" value="7.34767309e22"/>
+                <label for="moonRadius">Radius (m)</label>
+                <input id="moonRadius" type="number" value="1.737e6"/>
+                <label for="moonDistanceFromEarth">Distance From Earth (m):</label>
+                <input id="moonDistanceFromEarth" type="number" value="3.844e8"/>
+                <label for="moonVelocity">Velocity (m/s):</label>
+                <input id="moonVelocity" type="number" value="1.023056e3"/>
+            </div>
+            <div style="border: thin solid black; padding: 1px;">
+                <button id="Apply" onclick="applyAstroBodyParameters()">Apply Parameters</button>
+                <button id="Reset" onclick="resetAllParameters()">Reset Parameters</button>
+                <button id="Toggle" onclick="toggleAstroMovement()">Toggle Astro Movement</button>
+                <button id="Tiny" onclick="applyTinyParameters()">Tiny Parameters</button>
+            </div>
+        </div>
+	</body>
+</html>
